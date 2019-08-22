@@ -80,14 +80,14 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="green">
+        <stats-card data-background-color="white">
           <template slot="header">
-            <md-icon>store</md-icon>
+             <img src=".././assets/img/source/jobstreet.jpg" style = "height : 60px"> 
           </template>
 
           <template slot="content">
             <p class="category">JobStreet</p>
-            <h3 class="title">$34,245</h3>
+            <h3 class="title">105</h3>
           </template>
 
           <template slot="footer">
@@ -101,15 +101,15 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="orange">
+        <stats-card data-background-color="white">
           <template slot="header">
-            <md-icon>content_copy</md-icon>
+            <img src=".././assets/img/source/indeed.png" style = "height : 60px"> 
           </template>
 
           <template slot="content">
-            <p class="category">Inded</p>
+            <p class="category">Indeed</p>
             <h3 class="title">
-              49/50
+             15
               <small>GB</small>
             </h3>
           </template>
@@ -125,9 +125,9 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="red">
+        <stats-card data-background-color="white">
           <template slot="header">
-            <md-icon>info_outline</md-icon>
+            <img src=".././assets/img/source/joblike.png" style = "height : 60px"> 
           </template>
 
           <template slot="content">
@@ -146,14 +146,14 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="blue">
+        <stats-card data-background-color="white">
           <template slot="header">
-            <i class="fab fa-twitter"></i>
+            <img src=".././assets/img/source/linked.png" style = "height : 60px"> 
           </template>
 
           <template slot="content">
             <p class="category">LinkeId</p>
-            <h3 class="title">+245</h3>
+            <h3 class="title">15</h3>
           </template>
 
           <template slot="footer">

@@ -8,6 +8,8 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 // import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Register from "@/pages/formRegister.vue";
+import Login from "@/pages/formLogin.vue";
 
 const routes = [
   {
@@ -58,6 +60,16 @@ const routes = [
       //   name: "Upgrade to PRO",
       //   component: UpgradeToPRO
       // }
+      {
+        path: "register",
+        name: "Register",
+        component: Register
+      },
+      {
+        path: "login",
+        name: "Login",
+        component: Login
+      }
     ]
   }
 ];
