@@ -21,6 +21,15 @@ import App from "./App";
 // router setup
 import routes from "./routes/routes";
 
+// Boostrap
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+
+//Css
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 // Plugins
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";

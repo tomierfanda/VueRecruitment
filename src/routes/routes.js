@@ -2,6 +2,7 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
+import SettingUser from "@/pages/UserProfile/SettingUser.vue";
 import TableList from "@/pages/TableList.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
@@ -69,6 +70,11 @@ const routes = [
         path: "login",
         name: "Login",
         component: Login
+      },
+      {
+        path: "setting",
+        name: "Setting",
+        component: SettingUser
       }
     ]
   }

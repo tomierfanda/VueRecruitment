@@ -2,11 +2,15 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <notifications></notifications>
 
-    <side-bar  v-if="['Dashboard'].indexOf($route.name) > -1">
+    <side-bar  v-if="['Dashboard','Setting'].indexOf($route.name) > -1">
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
+      </sidebar-link>
+      <sidebar-link to="/setting">
+        <md-icon>build </md-icon>
+        <p>Setting</p>
       </sidebar-link>
       <sidebar-link to="/user">
         <md-icon>person</md-icon>
