@@ -1,5 +1,5 @@
 <template>
-  <md-toolbar md-elevation="0" class="md-transparent">
+  <md-toolbar  md-elevation="0" class="md-transparent"  v-if="['Dashboard','Setting'].indexOf($route.name) > -1">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
         <h3 class="md-title">{{ $route.name }}</h3>
@@ -31,55 +31,22 @@
               <p class="hidden-lg hidden-md">Dashboard</p>
             </md-list-item>
 
-            <!-- <md-list-item href="#/notifications" class="dropdown">
-              <drop-down>
-                <a slot="title" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="hidden-lg hidden-md">Notifications</p>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="#">Mike John responded to your email</a></li>
-                  <li><a href="#">You have 5 new tasks</a></li>
-                  <li><a href="#">You're now friend with Andrew</a></li>
-                  <li><a href="#">Another Notification</a></li>
-                  <li><a href="#">Another One</a></li>
-                </ul>
-              </drop-down>
-            </md-list-item> -->
-
-            <li class="md-list-item">
-              <a
-                href="#/notifications"
-                class="md-list-item-router md-list-item-container md-button-clean dropdown"
-              >
-                <div class="md-list-item-content">
-                  <drop-down>
-                    <md-button
-                      slot="title"
-                      class="md-button md-just-icon md-simple"
-                      data-toggle="dropdown"
-                    >
-                      <md-icon>notifications</md-icon>
-                      <span class="notification">5</span>
-                      <p class="hidden-lg hidden-md">Notifications</p>
-                    </md-button>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                      <li><a href="#">Mike John responded to your email</a></li>
-                      <li><a href="#">You have 5 new tasks</a></li>
-                      <li><a href="#">You're now friend with Andrew</a></li>
-                      <li><a href="#">Another Notification</a></li>
-                      <li><a href="#">Another One</a></li>
-                    </ul>
-                  </drop-down>
-                </div>
-              </a>
-            </li>
-
-            <md-list-item href="#/user">
+            <md-list-item @click="$bvToast.show('example-toast')">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </md-list-item>
+
+            <img src="../../assets/img/source/logo.png"  style="width : 50px"/>
+            <li>
+           <p>Hallo {{ pelamarData.name }} </p>
+            </li>
+
+      <b-toast id="example-toast" title="My Account" static no-auto-hide>
+              <md-list-item @click="funcLogout()">
+              <i  class="material-icons">logout</i>
+              </md-list-item>
+
+    </b-toast>
           </md-list>
         </div>
       </div>
@@ -88,9 +55,13 @@
 </template>
 
 <script>
+import Vue from "vue";
+import User from '../../api/user/index';
 export default {
   data() {
     return {
+       pelamarData: [],
+      title : "Hallo Admin",
       selectedEmployee: null,
       employees: [
         "Jim Halpert",
@@ -104,9 +75,36 @@ export default {
       ]
     };
   },
+
+   beforeCreate() {
+    let self = this;
+
+            User
+            .getById(window, self.$ls.get("userNow"))
+            .then(function(datas) {
+                return datas;
+            })
+            .then(function(result) {
+                console.log(result);
+                self.pelamarData = result;
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+        },
+
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+    },
+    funcLogout() {
+    let self = this
+    self.$ls.remove("userNow")
+    console.log("id nya " , self.$ls.get("userNow"))
+    if (self){
+      alert("Anda Telah Logout")
+      self.$router.push('login')
+     }
     }
   }
 };

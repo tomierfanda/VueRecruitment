@@ -1,7 +1,20 @@
 <template>
-  <div>
-    <md-table v-model="pelamarData" :table-header-color="tableHeaderColor">
-      <md-table-row slot="md-table-row" slot-scope="{ item }">
+    <div class="overflow-auto">
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
+
+    <p class="mt-3">Current Page: {{ currentPage }}</p>
+    <md-table
+     v-model="pelamarData" :table-header-color="tableHeaderColor">
+      <md-table-row id="my-table"
+     :per-page="perPage"
+     :current-page="currentPage"
+     small
+     slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="Name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Job Applied">{{ item.jobApplied }}</md-table-cell>
         <md-table-cell md-label="Phone">{{ item.phone }}</md-table-cell>
@@ -35,6 +48,8 @@ export default {
   },
   data() {
     return {
+      perPage: 3,
+        currentPage: 1,
       selected: [],
       pelamarData: []
     };

@@ -14,6 +14,14 @@ export default {
             console.log(err)
         })
     },
+    getById(window, id) {
+        return getApiNoAuth().get('Users/'+ id)
+        .then(function (response){
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
 
     PostUser(window, param) {
         return getApiNoAuth().post('Users', param)
@@ -23,7 +31,7 @@ export default {
             console.log(err)
         })
     },
-    updateUser(window, param) {
+    apiUpdateUser(window, param) {
         return getApiNoAuth().put('Users', param)
         .then(function (response){
             return response.data

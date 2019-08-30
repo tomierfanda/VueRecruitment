@@ -4,7 +4,7 @@
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
-        <chart-card
+        <!-- <chart-card
           :chart-data="dailySalesChart.data"
           :chart-options="dailySalesChart.options"
           :chart-type="'Line'"
@@ -26,12 +26,12 @@
               updated 4 minutes ago
             </div>
           </template>
-        </chart-card>
+        </chart-card> -->
       </div>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
-        <chart-card
+        <!-- <chart-card
           :chart-data="emailsSubscriptionChart.data"
           :chart-options="emailsSubscriptionChart.options"
           :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
@@ -51,12 +51,12 @@
               updated 10 days ago
             </div>
           </template>
-        </chart-card>
+        </chart-card> -->
       </div>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
-        <chart-card
+        <!-- <chart-card
           :chart-data="dataCompletedTasksChart.data"
           :chart-options="dataCompletedTasksChart.options"
           :chart-type="'Line'"
@@ -75,7 +75,7 @@
               campaign sent 26 minutes ago
             </div>
           </template>
-        </chart-card>
+        </chart-card> -->
       </div>
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
@@ -87,7 +87,7 @@
 
           <template slot="content">
             <p class="category">JobStreet</p>
-            <h3 class="title">105</h3>
+            <h3 class="title">5</h3>
           </template>
 
           <template slot="footer">
@@ -109,7 +109,7 @@
           <template slot="content">
             <p class="category">Indeed</p>
             <h3 class="title">
-             15
+             1
               <small>GB</small>
             </h3>
           </template>

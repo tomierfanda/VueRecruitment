@@ -1,4 +1,5 @@
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import WebCarrer from "@/pages/WebCarrer.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
@@ -13,11 +14,23 @@ import Register from "@/pages/formRegister.vue";
 import Login from "@/pages/formLogin.vue";
 
 const routes = [
+  { path: '/', name:"Carrer", component: WebCarrer},
+  { path: "/login", name: "Login", component: Login },
   {
     path: "/",
     component: DashboardLayout,
     redirect: "/dashboard",
     children: [
+      {
+        path: "Carrer",
+        name: "WebCarrer",
+        component: WebCarrer
+      },
+      {
+        path: "register",
+        name: "Register",
+        component: Register
+      },
       {
         path: "dashboard",
         name: "Dashboard",
@@ -55,21 +68,6 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
-      },
-      // {
-      //   path: "upgrade",
-      //   name: "Upgrade to PRO",
-      //   component: UpgradeToPRO
-      // }
-      {
-        path: "register",
-        name: "Register",
-        component: Register
-      },
-      {
-        path: "login",
-        name: "Login",
-        component: Login
       },
       {
         path: "setting",

@@ -74,37 +74,37 @@
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-field>
                         <label>Name</label>
-                        <md-input v-model="param['name']" value="" type="text"></md-input>
+                        <md-input v-model="updateId['name']" value="" type="text"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-field>
                         <label>Email Address</label>
-                        <md-input v-model="email" type="email"></md-input>
+                        <md-input v-model="updateId['email']" value="" type="email"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Phone</label>
-                        <md-input v-model="phone" type="text"></md-input>
+                        <md-input v-model="updateId['phone']" type="text"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Company</label>
-                        <md-input v-model="company" type="text"></md-input>
+                        <md-input v-model="updateId['company']" type="text"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Country</label>
-                        <md-input v-model="country" type="text"></md-input>
+                        <md-input v-model="updateId['country']" type="text"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Address</label>
-                        <md-input v-model="address" type="text"></md-input>
+                        <md-input v-model="updateId['address']" type="text"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
@@ -116,23 +116,24 @@
                 <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Current Password</label>
-                        <md-input v-model="password" type="password"></md-input>
-                        </md-field>
+                        <md-input v-model="updatePw['password']" type="password"></md-input>
+                        </md-field> 
                     </div>
                 <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>New Password</label>
-                        <md-input v-model="password1" type="password"></md-input>
+                        <md-input name="pass" v-model="password" type="password"></md-input>
                         </md-field>
+
                     </div>
                 <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                         <label>Confirm Password</label>
-                        <md-input v-model="password2" type="password"></md-input>
+                        <md-input name="cpass" v-model="password2" type="password"></md-input>
                         </md-field>
                     </div>
                  <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success">Change Password </md-button>
+                        <md-button @click="changePassword()" class="md-raised md-success">Change Password </md-button>
                     </div>
             </b-modal>
         </div>
@@ -144,6 +145,14 @@
 <script>
 import Vue from "vue";
 import user from '../../api/user/index';
+import VueLocalStorage from 'vue-localstorage'
+ 
+// Vue.use(VueLocalStorage)
+
+Vue.use(VueLocalStorage, {
+  name: 'ls',
+  bind: true //created computed members from your variable declarations
+})
 
 export default {
   name: "edit-profile-form",
@@ -165,46 +174,31 @@ export default {
         password1 : "",
         password2 : "",
         param : {},
-        dataUser : {}
-
+        dataUser : {},
+        updateId : [],
+        updatePw : [],
     };
   },
  beforeCreate() {
-    let self = this;
-
+     let self = this
             user
-            .getUser(window)
-            .then(function(datas) {
+            .getById(window, self.$ls.get("userNow"))
+            .then(function(datas){
                 return datas;
             })
-            .then(function(result) {
-                console.log(result);
-                self.dataUser= result;
+            .then(function(result){
+                self.updateId = result;
+                console.log ("ini id update" , self.updateId)
             })
-            .catch(function(err) {
-                console.log(err);
+            .catch(function(err){
+                console.log(err)
             });
         },
-  computed: {
-    user(){
-    let self = this
-    user.getUser(window).then(function(datas) {
-        return datas
-    }).then(function(result){
-        console.log(result)
-        self.dataUser = result
-    }).catch(function(err){
-        console.log(err)
-    })
-  }
-  },
-
-
 
   methods: {
     funcPost() {
     const self = this;
-
+    const param = {}
             user
             .PostUser(window, self.param)
             .then(function(datas) {
@@ -214,6 +208,50 @@ export default {
                  if(result){
                     alert('Account anda Berhasil ditambahkan');
                 self.$router.push('dashboard')
+                }
+                 else {
+                   alert('Data yang anda masukkan salah');
+
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+        },
+    funcUpdate() {
+    let self = this;
+    let  updateId = []
+            user
+            .apiUpdateUser(window, self.updateId)
+            .then(function(datas) {
+                return datas;
+            })
+            .then(function(result) {
+                 if(result){
+                    alert('Account anda Berhasil diupdate');
+                    console.log("sudah ke update", result)
+                }
+                 else {
+                   alert('Data yang anda masukkan salah');
+
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+        },
+    changePassword() {
+    let self = this;
+    let updatePw = []
+            user
+            .apiUpdateUser(window, self.updatePw)
+            .then(function(datas) {
+                return datas;
+            })
+            .then(function(result) {
+                 if(result){
+                    alert('Password anda berhasil diganti');
+                    console.log("sudah ke ganti", result)
                 }
                  else {
                    alert('Data yang anda masukkan salah');
